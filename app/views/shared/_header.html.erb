@@ -15,7 +15,6 @@
       <li><%= link_to 'ブランド', "#", class: "brand-list" %></li>
     </ul>
     <ul class='lists-right'>
-      <%# deviseを導入できたら、ログインの有無で表示が変わるように分岐しましょう%>
       <%if user_signed_in? %>
         <li><%= link_to current_user.nickname, "#", class: "user-nickname" %></li>
         <li><%= link_to 'ログアウト', "/users/sign_out", method: :delete, class: "logout" %> </li>
@@ -23,7 +22,6 @@
         <li><%= link_to 'ログイン', "/users/sign_in", class: "login" %></li>
         <li><%= link_to '新規登録', "/users/sign_up", class: "sign-up" %></li>
       <% end %>
-      <%# //deviseを導入できたら、ログインの有無で表示が変わるように分岐しましょう%>
       
     </ul>
   </div>
