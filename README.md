@@ -31,6 +31,7 @@ Things you may want to cover:
 | nickname            | string  | null: false |
 | email               | string  | null: false |
 | password            | string  | null: false |
+| password_encrypted  | string  | null: false |
 | last_name           | string  | null: false |
 | first_name          | string  | null: false |
 | last_name_kana      | string  | null: false |
@@ -91,7 +92,7 @@ Things you may want to cover:
 |-------------------------------------------------------------|
 | purchase      | references | null: false, foreign_key: true |
 | post_number   | string     | null: false                    |
-| prefecture    | string     | null: false                    |
+| prefecture_id | integer    | null: false                    |
 | municipality  | string     | null: false                    |
 | house_number  | string     | null: false                    |
 | building_name | string     |                                |
