@@ -68,4 +68,7 @@ gem 'devise'
 
 gem 'pry-rails'
 
+gem 'mini_magick'
+gem 'image_processing'
+
 # gem 'rails-i18n'
