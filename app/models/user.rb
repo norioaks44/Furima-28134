@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   with_options presence:true do
-    validates :nickname
+    validates :nickname, uniqueness: { case_sensitive: false }
     PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze # 半角英数字
     validates :password, format: { with: PASSWORD_REGEX, message: 'include both letters and numbers' }
     NAME_REGEX = /\A[ぁ-んァ-ン一-龥]/.freeze  # 全角
