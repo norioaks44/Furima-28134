@@ -44,17 +44,17 @@ Things you may want to cover:
 - has_many :comments
 
 ## items テーブル
-| Column             | Type       | Options                        |
-|------------------------------------------------------------------|
-| user               | references | null: false, foreign_key: true |
-| name               | string     | null: false                    |
-| text               | text       | null: false                    |
-| category_id        | integer     | null: false                   |
-| condition_id       | integer     | null: false                   |
-| delivery_charge_id | integer     | null: false                   |
-| delivery_source_id | integer     | null: false                   |
-| delivery_day_id    | integer     | null: false                   |
-| price              | integer     | null: false                   |
+| Column                 | Type       | Options                        |
+|----------------------------------------------------------------------|
+| user                   | references | null: false, foreign_key: true |
+| name                   | string     | null: false                    |
+| text                   | text       | null: false                    |
+| category_id            | integer     | null: false                   |
+| condition_id           | integer     | null: false                   |
+| delivery_charge_id     | integer     | null: false                   |
+| delivery_prefecture_id | integer     | null: false                   |
+| delivery_day_id        | integer     | null: false                   |
+| price                  | integer     | null: false                   |
 
 ### Association
 
