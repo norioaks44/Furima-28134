@@ -17,9 +17,9 @@ class Item < ApplicationRecord
     validates :delivery_charge_id, numericality: { other_than: 1, message: 'Select' }
     validates :delivery_prefecture_id, numericality: { other_than: 1, message: 'Select' }
     validates :delivery_day_id, numericality: { other_than: 1, message: 'Select' }
-
-    # validates :price, numericality: { only_integer: true, greater_than: 300 , less_than: 9999999, message:'is out of setting range'}
+    
+    validates :price, numericality: { only_integer: true, 
+    greater_than: 299, less_than: 10000000, message: 'is out of setting range and enter half-width number' }
   end
 
-  validates :price, presence: true, numericality: { only_integer: true, greater_than: 300, less_than: 9_999_999, message: 'is out of setting range and enter half-width number' }
 end

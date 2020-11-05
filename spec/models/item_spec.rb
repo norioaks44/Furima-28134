@@ -10,6 +10,14 @@ RSpec.describe Item, type: :model do
     it '出品画像(image)、商品名(name)、商品の説明(text)、カテゴリー(category_id)、商品の状態(condition_id)、配送料の負担(delivery_charge_id)、発送元の地域(delivery_prefecture_id)、発送までの日数(delivery_day_id)、販売価格(price)が存在していれば保存できること' do
       expect(@item).to be_valid
     end
+    it '販売価格が300円であれば保存できる' do
+      @item.price = '300'
+      expect(@item).to be_valid
+    end
+    it '販売価格が9,999,999円であれば保存できる' do
+      @item.price = '9999999'
+      expect(@item).to be_valid
+    end
 
     it '出品画像が空欄では保存できないこと' do
       @item.image = nil
@@ -22,7 +30,7 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Name can't be blank")
     end
     it '商品名が41文字以上では保存できないこと' do
-      @item.name = 'あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよわをん'
+      @item.name = 'あ'* 41
       @item.valid?
       expect(@item.errors.full_messages).to include('Name is too long (maximum is 40 characters)')
     end
@@ -32,8 +40,7 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Text can't be blank")
     end
     it '商品の説明が1001文字以上では保存できないこと' do
-      @item.text = 'ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
-      '
+      @item.text = 'あ'* 1001
       @item.valid?
       expect(@item.errors.full_messages).to include('Text is too long (maximum is 1000 characters)')
     end
@@ -92,12 +99,12 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include("Price can't be blank")
     end
-    it '販売価格が300未満では保存できないこと' do
+    it '販売価格が300円未満では保存できないこと' do
       @item.price = 299
       @item.valid?
       expect(@item.errors.full_messages).to include('Price is out of setting range and enter half-width number')
     end
-    it '販売価格が10,000,000以上では保存できないこと' do
+    it '販売価格が10,000,000円以上では保存できないこと' do
       @item.price = 10000000
       @item.valid?
       expect(@item.errors.full_messages).to include('Price is out of setting range and enter half-width number')
