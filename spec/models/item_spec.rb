@@ -38,26 +38,51 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include('Text is too long (maximum is 1000 characters)')
     end
     it 'カテゴリーが空欄では保存できないこと' do
+      @item.category_id = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include('Category Select')
+    end
+    it 'カテゴリーのidが1では保存できないこと' do
       @item.category_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include('Category Select')
     end
     it '商品の状態が空欄では保存できないこと' do
+      @item.condition_id = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include('Condition Select')
+    end
+    it '商品の状態のidが1では保存できないこと' do
       @item.condition_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include('Condition Select')
     end
     it '配送料の負担が空欄では保存できないこと' do
+      @item.delivery_charge_id = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include('Delivery charge Select')
+    end
+    it '配送料の負担のidが1では保存できないこと' do
       @item.delivery_charge_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include('Delivery charge Select')
     end
     it '発送元の地域が空欄では保存できないこと' do
+      @item.delivery_prefecture_id = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include('Delivery prefecture Select')
+    end
+    it '発送元の地域のidが1では保存できないこと' do
       @item.delivery_prefecture_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include('Delivery prefecture Select')
     end
     it '発送までの日数が空欄では保存できないこと' do
+      @item.delivery_day_id = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include('Delivery day Select')
+    end
+    it '発送までの日数のidが1では保存できないこと' do
       @item.delivery_day_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include('Delivery day Select')
@@ -73,7 +98,7 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include('Price is out of setting range and enter half-width number')
     end
     it '販売価格が10,000,000以上では保存できないこと' do
-      @item.price = 10_000_000
+      @item.price = 10000000
       @item.valid?
       expect(@item.errors.full_messages).to include('Price is out of setting range and enter half-width number')
     end
