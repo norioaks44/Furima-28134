@@ -24,7 +24,7 @@ RSpec.describe Item, type: :model do
     it '商品名が41文字以上では保存できないこと' do
       @item.name = 'あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよわをん'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Name is too long (maximum is 40 characters)")
+      expect(@item.errors.full_messages).to include('Name is too long (maximum is 40 characters)')
     end
     it '商品の説明が空欄では保存できないこと' do
       @item.text = ''
@@ -35,47 +35,52 @@ RSpec.describe Item, type: :model do
       @item.text = 'ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
       '
       @item.valid?
-      expect(@item.errors.full_messages).to include("Text is too long (maximum is 1000 characters)")
+      expect(@item.errors.full_messages).to include('Text is too long (maximum is 1000 characters)')
     end
     it 'カテゴリーが空欄では保存できないこと' do
       @item.category_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Category Select")
+      expect(@item.errors.full_messages).to include('Category Select')
     end
     it '商品の状態が空欄では保存できないこと' do
       @item.condition_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Condition Select")
+      expect(@item.errors.full_messages).to include('Condition Select')
     end
     it '配送料の負担が空欄では保存できないこと' do
       @item.delivery_charge_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Delivery charge Select")
+      expect(@item.errors.full_messages).to include('Delivery charge Select')
     end
     it '発送元の地域が空欄では保存できないこと' do
       @item.delivery_prefecture_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Delivery prefecture Select")
+      expect(@item.errors.full_messages).to include('Delivery prefecture Select')
     end
     it '発送までの日数が空欄では保存できないこと' do
       @item.delivery_day_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Delivery day Select")
+      expect(@item.errors.full_messages).to include('Delivery day Select')
     end
-      it '販売価格が空欄では保存できないこと' do
+    it '販売価格が空欄では保存できないこと' do
       @item.price = nil
       @item.valid?
-    expect(@item.errors.full_messages).to include("Price can't be blank")
+      expect(@item.errors.full_messages).to include("Price can't be blank")
     end
-      it '販売価格が300未満では保存できないこと' do
+    it '販売価格が300未満では保存できないこと' do
       @item.price = 299
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price is out of setting range")
+      expect(@item.errors.full_messages).to include('Price is out of setting range and enter half-width number')
     end
     it '販売価格が10,000,000以上では保存できないこと' do
-      @item.price = 10000000
+      @item.price = 10_000_000
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price is out of setting range")
+      expect(@item.errors.full_messages).to include('Price is out of setting range and enter half-width number')
+    end
+    it '販売価格が全角入力では保存できないこと' do
+      @item.price = '１２３'
+      @item.valid?
+      expect(@item.errors.full_messages).to include('Price is out of setting range and enter half-width number')
     end
   end
 end
