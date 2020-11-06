@@ -77,12 +77,12 @@ RSpec.describe User, type: :model do
       it '苗字は全角でなければ登録できない' do
         @user.last_name = 'kato'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name enter in full characters")
+        expect(@user.errors.full_messages).to include('Last name enter in full characters')
       end
       it '名前は全角でなければ登録できない' do
         @user.first_name = 'touka'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name enter in full characters")
+        expect(@user.errors.full_messages).to include('First name enter in full characters')
       end
       it '苗字のフリガナが空だと登録できない' do
         @user.last_name_kana = ''
@@ -97,12 +97,12 @@ RSpec.describe User, type: :model do
       it '苗字のフリガナがカタカナでければ登録できない' do
         @user.last_name_kana = 'kaとう'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name kana enter in katakana characters")
+        expect(@user.errors.full_messages).to include('Last name kana enter in katakana characters')
       end
       it '名前のフリガナがカタカナでければ登録できない' do
         @user.first_name_kana = 'touか'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name kana enter in katakana characters")
+        expect(@user.errors.full_messages).to include('First name kana enter in katakana characters')
       end
       it '生年月日が空だと登録できない' do
         @user.birth_date = ''
