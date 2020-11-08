@@ -23,9 +23,7 @@ class ItemsController < ApplicationController
   end
   
   def edit
-    if user_signed_in? && current_user.id == @item.user_id
-      redirect_to edit_item_path
-    else
+    if current_user.id != @item.user_id
       render :show
     end
   end
@@ -49,4 +47,5 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
+
 end
