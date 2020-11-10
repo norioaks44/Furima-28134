@@ -1,5 +1,5 @@
 class UserPurchase
-  include ActiveModel::Model
+  # include ActiveModel::Model
 
 
 
