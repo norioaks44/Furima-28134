@@ -21,7 +21,7 @@
         <%= @item.price %>円
       </span>
       <span class="item-postage">
-        (税込) 送料込み
+        <%= @item.delivery_charge.name %>
       </span>
     </div>
 
