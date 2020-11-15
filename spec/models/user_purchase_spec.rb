@@ -55,7 +55,14 @@ RSpec.describe UserPurchase, type: :model do
       @user_purchase.phone_number = '１２３４５６７８９０'
       @user_purchase.valid?
       expect(@user_purchase.errors.full_messages).to include("Phone number is invalid. Input half-width characters.")
+    end
+    
+    it 'tokenが空では保存できないこと' do
+      @user_purchase.token = nil
+      @user_purchase.valid?
+      expect(@user_purchase.errors.full_messages).to include("Token can't be blank")
       # binding.pry
     end
+
   end
 end
