@@ -151,11 +151,11 @@
               <%= image_tag item.image, class: "item-img" %>
 
             <%# 商品購入機能実装後 %>
-            <%# <% if purchase.item_id && purchase.user_id %>
+            <% if item.purchase != nil %>
               <div class='sold-out'>
                 <span>Sold Out!!</span>
               </div>
-            <%# <% end %>
+            <% end %>
             <%# 商品購入機能実装後 %>
             </div>
           <% end %>
