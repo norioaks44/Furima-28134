@@ -42,8 +42,6 @@ class ItemsController < ApplicationController
     end
   end
 
-
-
   private
 
   def item_params
@@ -61,4 +59,5 @@ class ItemsController < ApplicationController
       render :show
     end
   end
+
 end

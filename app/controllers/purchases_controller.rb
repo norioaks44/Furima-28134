@@ -5,11 +5,13 @@ class PurchasesController < ApplicationController
 
   def index
     @purchase = UserPurchase.new
+    if @item.purchase != nil
+      redirect_to root_path
+    end
   end
   
   def create
     @purchase = UserPurchase.new(purchase_params)
-    # binding.pry
     if @purchase.valid?
       pay_purchase
       @purchase.save
@@ -38,7 +40,7 @@ class PurchasesController < ApplicationController
   end
     
   def set_user_check
-    if current_user.id = @item.user_id
+    if current_user.id == @item.user_id 
       redirect_to root_path
     end
   end
