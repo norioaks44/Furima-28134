@@ -26,6 +26,12 @@ RSpec.describe UserPurchase, type: :model do
       @user_purchase.valid?
       expect(@user_purchase.errors.full_messages).to include("Delivery prefecture can't be blank")
     end
+    it 'prefectureがid:1が選択されていると保存できないこと' do
+      @user_purchase.delivery_prefecture_id = 1
+      @user_purchase.valid?
+      expect(@user_purchase.errors.full_messages).to include("Delivery prefecture can't be blank")
+    end
+    
     it 'cityは空では保存できないこと' do
       @user_purchase.city = nil
       @user_purchase.valid?
@@ -51,17 +57,21 @@ RSpec.describe UserPurchase, type: :model do
       @user_purchase.valid?
       expect(@user_purchase.errors.full_messages).to include("Phone number can't be blank")
     end
+    it 'phoen_numbeerが12桁以上だと保存できないこと' do
+      @user_purchase.phone_number = '012345678901'
+      @user_purchase.valid?
+      expect(@user_purchase.errors.full_messages).to include("Phone number is invalid. Input half-width and less than 11 characters.")
+    end
     it 'phone_numberが半角数字以外では保存できないこと' do
       @user_purchase.phone_number = '１２３４５６７８９０'
       @user_purchase.valid?
-      expect(@user_purchase.errors.full_messages).to include("Phone number is invalid. Input half-width characters.")
+      expect(@user_purchase.errors.full_messages).to include("Phone number is invalid. Input half-width and less than 11 characters.")
     end
     
     it 'tokenが空では保存できないこと' do
       @user_purchase.token = nil
       @user_purchase.valid?
       expect(@user_purchase.errors.full_messages).to include("Token can't be blank")
-      # binding.pry
     end
 
   end
