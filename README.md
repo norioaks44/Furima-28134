@@ -46,16 +46,16 @@ Things you may want to cover:
 ## items テーブル
 
 | Column                 | Type       | Options                        |
-|----------------------------------------------------------------------|
+| ---------------------- | ---------- | ------------------------------ |
 | user                   | references | null: false, foreign_key: true |
 | name                   | string     | null: false                    |
 | text                   | text       | null: false                    |
-| category_id            | integer     | null: false                   |
-| condition_id           | integer     | null: false                   |
-| delivery_charge_id     | integer     | null: false                   |
-| delivery_prefecture_id | integer     | null: false                   |
-| delivery_day_id        | integer     | null: false                   |
-| price                  | integer     | null: false                   |
+| category_id            | integer    | null: false                    |
+| condition_id           | integer    | null: false                    |
+| delivery_charge_id     | integer    | null: false                    |
+| delivery_prefecture_id | integer    | null: false                    |
+| delivery_day_id        | integer    | null: false                    |
+| price                  | integer    | null: false                    |
 
 ### Association
 - has_many :comments
@@ -65,7 +65,7 @@ Things you may want to cover:
 ## comments テーブル
 
 | Column       | Type       | Options                        |
-|------------------------------------------------------------|
+| ------------ | ---------- | ------------------------------ |
 | user         | references | null: false, foreign_key: true |
 | item         | references | null: false, foreign_key: true |
 | comment_text | string     | null: false                    |
@@ -78,7 +78,7 @@ Things you may want to cover:
 ## purchases テーブル
 
 | Column         | Type       | Options                        |
-|--------------------------------------------------------------|
+| -------------- | ---------- | ------------------------------ |
 | user           | references | null: false, foreign_key: true |
 | item           | references | null: false, foreign_key: true |
 
@@ -91,7 +91,7 @@ Things you may want to cover:
 ## address テーブル
 
 | Column                 | Type       | Options                        |
-|----------------------------------------------------------------------|
+| ---------------------- | ---------- | ------------------------------ |
 | purchase               | references | null: false, foreign_key: true |
 | postal_code            | string     | null: false                    |
 | delivery_prefecture_id | integer    | null: false                    |
