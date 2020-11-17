@@ -26,6 +26,7 @@ Things you may want to cover:
 # テーブル設計
 
 ## users テーブル
+
 | Column              | Type    | Options     |
 |---------------------------------------------|
 | nickname            | string  | null: false |
@@ -38,12 +39,12 @@ Things you may want to cover:
 | birth_date          | date    | null: false |
 
 ### Association
-
 - has_many :items
 - has_many :purchases
 - has_many :comments
 
 ## items テーブル
+
 | Column                 | Type       | Options                        |
 |----------------------------------------------------------------------|
 | user                   | references | null: false, foreign_key: true |
@@ -57,12 +58,12 @@ Things you may want to cover:
 | price                  | integer     | null: false                   |
 
 ### Association
-
 - has_many :comments
 - belongs_to :user
 - has_one :purchase
 
 ## comments テーブル
+
 | Column       | Type       | Options                        |
 |------------------------------------------------------------|
 | user         | references | null: false, foreign_key: true |
@@ -75,6 +76,7 @@ Things you may want to cover:
 
 
 ## purchases テーブル
+
 | Column         | Type       | Options                        |
 |--------------------------------------------------------------|
 | user           | references | null: false, foreign_key: true |
@@ -87,6 +89,7 @@ Things you may want to cover:
 - has_one :address
 
 ## address テーブル
+
 | Column                 | Type       | Options                        |
 |----------------------------------------------------------------------|
 | purchase               | references | null: false, foreign_key: true |
@@ -98,5 +101,4 @@ Things you may want to cover:
 | phone_number           | string     | null: false                    |
 
 ### Association
-
 - belongs_to :purchase
